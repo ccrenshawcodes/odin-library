@@ -32,3 +32,16 @@ function addBook(title, author, year, read) {
   library.push(new Book(title, author, year, read));
 }
 
+const container = document.querySelector('.container');
+
+function displayCards () {
+    library.forEach(item => {
+        const card = document.createElement('div');
+        const node = document.createTextNode('trying this');
+
+        card.appendChild(node);
+        container.appendChild(card);
+    })
+}
+
+displayCards();
