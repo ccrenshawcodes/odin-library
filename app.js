@@ -37,9 +37,7 @@ const container = document.querySelector('.container');
 function displayCards () {
     library.forEach(item => {
         const card = document.createElement('div');
-        const node = document.createTextNode('trying this');
-
-        card.appendChild(node);
+        card.append(`Title: ${item.title}; Author: ${item.author}; Year: ${item.year}; Read? ${item.read}`);
         container.appendChild(card);
     })
 }
