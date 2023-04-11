@@ -1,5 +1,38 @@
 * {
     background-color: rgb(170, 220, 247);
+    margin: 0;
+    padding: 0;
+}
+
+.ribbon {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 15px;
+    margin: 2em 0px;
+    background-color: #fefefe;
+    justify-content: center;
+    align-items: center;
+}
+
+.ribbon > h1 {
+    background-color: inherit;
+    padding-left: 20px;
+}
+
+.open {
+    background-color: white;
+    margin: 1.5em;
+    border: 1px solid #888;
+    border-radius: 10px;
+    padding: 0.5em;
+    width: 60%;
+}
+
+.open:hover {
+    background-color: #bee8ba;
+    transition: all 0.2s ease-out;
+    cursor:pointer;
+    box-shadow: 4px 4px 12px -5px #888;
 }
 
 .container {
@@ -7,10 +40,74 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 2em;
+    margin: 2em;
 }
 
 .container > div {
     background-color: white;
-    border: 1px solid black;
     padding: 1.5em;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 0px #b5b5b5;
+    ;
+}
+
+.container > div:hover {
+    box-shadow: 4px 4px 12px -5px #888;
+
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    transition: all 0.5s ease;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+.modal-body {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; 
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body > label, .modal-body > input, .modal-body > .close {
+    background-color: inherit;
+}
+
+.modal-body > input {
+    border: 1px solid #888;
+    padding: 0.5em;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.modal-body > .add {
+    border: 1px solid #888;
+    padding: 0.5em;
+    border-radius: 10px;
+    background-color: lightgreen;
+    margin: 5px;
+}
+
+.modal-body > .close {
+    border: none;
+    font-weight: bolder;
+    color: red;
+    align-self: flex-end;
+    margin-bottom: 0.5em;
+}
+
+.modal-body > .close:hover {
+    cursor: pointer;
 }
