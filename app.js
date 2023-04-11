@@ -1,3 +1,8 @@
+const container = document.querySelector('.container');
+const addBtn = document.querySelector('.open');
+const modal = document.querySelector('.modal');
+const closeBtn = document.querySelector('.close');
+
 let library = [
     {
         title: 'The Lord of the Rings',
@@ -32,14 +37,17 @@ function addBook(title, author, year, read) {
   library.push(new Book(title, author, year, read));
 }
 
-const container = document.querySelector('.container');
+library.forEach(item => {
+    const card = document.createElement('div');
+    card.append(`Title: ${item.title}; Author: ${item.author}; Year: ${item.year}; Read? ${item.read}`);
+    container.appendChild(card);
+})
 
-function displayCards () {
-    library.forEach(item => {
-        const card = document.createElement('div');
-        card.append(`Title: ${item.title}; Author: ${item.author}; Year: ${item.year}; Read? ${item.read}`);
-        container.appendChild(card);
-    })
-}
+addBtn.addEventListener('click', () => {
+    modal.style.display = 'inline-block';
+});
 
-displayCards();
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+})
+
