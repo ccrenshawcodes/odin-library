@@ -81,25 +81,6 @@
     flex-direction: column;
 }
 
-.modal-body > label, .modal-body > input, .modal-body > .close {
-    background-color: inherit;
-}
-
-.modal-body > input {
-    border: 1px solid #888;
-    padding: 0.5em;
-    margin: 5px;
-    border-radius: 10px;
-}
-
-.modal-body > .add {
-    border: 1px solid #888;
-    padding: 0.5em;
-    border-radius: 10px;
-    background-color: lightgreen;
-    margin: 5px;
-}
-
 .modal-body > .close {
     border: none;
     font-weight: bolder;
@@ -111,3 +92,30 @@
 .modal-body > .close:hover {
     cursor: pointer;
 }
+
+.modal-body > form {
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+form > label, form > input, .modal-body > .close {
+    background-color: #fefefe;
+}
+
+.modal-body > form > input {
+    border: 1px solid #888;
+    padding: 0.5em;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.modal-body > form > .add {
+    border: 1px solid #888;
+    padding: 0.5em;
+    border-radius: 10px;
+    background-color: lightgreen;
+    margin: 5px;
+    cursor: pointer;
+}
+
