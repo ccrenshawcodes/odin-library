@@ -11,6 +11,7 @@ let bkYear = document.querySelector('#year');
 let bkRead = document.querySelector('#read');
 
 
+
 let library = [
     {
         title: 'The Lord of the Rings',
@@ -46,18 +47,30 @@ function addBook(title, author, year, read) {
   library.push(new Book(title, author, year, read));
 }
 
+//make a button in the DOM
+function makeBtn(parent) {
+    const mkBtn = document.createElement('button');
+    mkBtn.setAttribute('class', 'del');
+    mkBtn.append('Delete button');
+    parent.appendChild(mkBtn);
+}
+
 //display array items as cards
 function displayItems() {
     library.forEach(item => {
         const card = document.createElement('div');
+        card.setAttribute('data-index', `${library.indexOf(item)}`);
         card.append(`Title: ${item.title}; Author: ${item.author}; Year: ${item.year}; Read? ${item.read}`);
+        makeBtn(card);
         container.appendChild(card);
+        
     })
 }
+//I don't think this will be needed in the final product?
 displayItems();
 
 
-//modal to appear when "add a new book" is clicked
+//modal to appear when "add new book" is clicked
 openModal.addEventListener('click', () => {
     modal.style.display = 'inline-block';
 });
@@ -65,16 +78,23 @@ openModal.addEventListener('click', () => {
 //modal to be hidden when X is clicked
 closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
+    form.reset();
 });
 
 //form data to be added to the array when "add" is clicked
+//new card to be created, display data from latest array item
 addBtn.addEventListener('click', () => {
     addBook(bkTitle.value, bkAuthor.value, bkYear.value, bkRead.checked);
-    modal.style.display = 'none';
 
+    const lastBook = library[library.length-1];
     const card = document.createElement('div');
-    card.append(`Title: ${library[library.length-1].title}; Author: ${library[library.length-1].author}; Year: ${library[library.length-1].year}; Read? ${library[library.length-1].read}`);
+
+    card.setAttribute('data-index', `${library.length-1}`);
+    card.append(`Title: ${lastBook.title}; Author: ${lastBook.author}; Year: ${lastBook.year}; Read? ${lastBook.read}`);
+    makeBtn(card);
     container.appendChild(card);
 
+    modal.style.display = 'none';
     form.reset();
 });
+
