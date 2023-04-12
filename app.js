@@ -4,6 +4,7 @@ const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('.close');
 const addBtn = document.querySelector('.add');
 
+const form = document.querySelector('form');
 let bkTitle = document.querySelector('#title');
 let bkAuthor = document.querySelector('#author');
 let bkYear = document.querySelector('#year');
@@ -64,13 +65,16 @@ openModal.addEventListener('click', () => {
 //modal to be hidden when X is clicked
 closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
-})
-
-
+});
 
 //form data to be added to the array when "add" is clicked
 addBtn.addEventListener('click', () => {
-    addBook(bkTitle.value, bkAuthor.value, bkYear.value, bkRead.value);
+    addBook(bkTitle.value, bkAuthor.value, bkYear.value, bkRead.checked);
     modal.style.display = 'none';
-    displayItems();
+
+    const card = document.createElement('div');
+    card.append(`Title: ${library[library.length-1].title}; Author: ${library[library.length-1].author}; Year: ${library[library.length-1].year}; Read? ${library[library.length-1].read}`);
+    container.appendChild(card);
+
+    form.reset();
 });
