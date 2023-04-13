@@ -11,7 +11,6 @@ let bkYear = document.querySelector('#year');
 let bkRead = document.querySelector('#read');
 
 
-
 let library = [
     {
         title: 'The Lord of the Rings',
@@ -47,12 +46,22 @@ function addBook(title, author, year, read) {
   library.push(new Book(title, author, year, read));
 }
 
-//make a button in the DOM
+//remove card + library entry on delete button click
+function removeBook (btn) {
+    btn.addEventListener('click', () => {
+      const dataIndex = Number(btn.parentElement.getAttribute('data-index'));
+      library.splice(dataIndex, 1);
+      btn.parentElement.remove();
+    });
+  }
+
+//make a delete button in the DOM
 function makeBtn(parent) {
     const mkBtn = document.createElement('button');
     mkBtn.setAttribute('class', 'del');
-    mkBtn.append('Delete button');
+    mkBtn.append('Remove');
     parent.appendChild(mkBtn);
+    removeBook(mkBtn);
 }
 
 //display array items as cards
