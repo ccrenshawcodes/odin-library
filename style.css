@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
 * {
     background-color: rgb(170, 220, 247);
     margin: 0;
     padding: 0;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .ribbon {
     display: grid;
     grid-template-columns: 2fr 1fr;
     padding: 15px;
-    margin: 2em 0px;
+    margin-bottom: 2em;
     background-color: #fefefe;
     justify-content: center;
     align-items: center;
@@ -48,17 +51,33 @@
     padding: 1.5em;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 0px #b5b5b5;
-    ;
+    white-space: pre-line;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+    gap: 0.5em;
 }
 
 .container > div:hover {
     box-shadow: 4px 4px 12px -5px #888;
+    transition: all 0.3s ease;
+}
 
+.del {
+    background-color: #f5a6a8;
+    border: 1px solid #888;
+    border-radius: 10px;
+}
+
+.del:hover{
+    cursor: pointer;
+    background-color: #fa7a7f;
+    transition: all 0.3s ease;
 }
 
 .modal {
-    display: none; /* Hidden by default */
-    transition: all 0.5s ease;
+    display: none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -68,7 +87,6 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-
 }
 
 .modal-body {
