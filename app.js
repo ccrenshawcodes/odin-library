@@ -116,6 +116,7 @@ displayItems();
 //modal to appear when "add new book" is clicked
 openModal.addEventListener('click', () => {
     modal.style.display = 'block';
+    bkTitle.focus();
 });
 
 //modal to be hidden when X is clicked
