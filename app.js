@@ -1,4 +1,7 @@
 const container = document.querySelector('.container');
+const tbr = document.querySelector('.tbr');
+const pastRead = document.querySelector('.read');
+
 const openModal = document.querySelector('.open');
 const modal = document.querySelector('.modal');
 const closeBtn = document.querySelector('.close');
@@ -69,9 +72,14 @@ function displayItems() {
     library.forEach(item => {
         const card = document.createElement('div');
         card.setAttribute('data-index', `${library.indexOf(item)}`);
-        card.append(`Title: ${item.title}; Author: ${item.author}; Year: ${item.year}; Read? ${item.read}`);
+        card.append(`Title:\n${item.title}\nAuthor:\n${item.author}\nYear:\n${item.year}`);
         makeBtn(card);
-        container.appendChild(card);
+        
+        if(item.read === true){
+            pastRead.appendChild(card);
+        } else if (item.read === false) {
+            tbr.appendChild(card);
+        }
         
     })
 }
@@ -81,7 +89,7 @@ displayItems();
 
 //modal to appear when "add new book" is clicked
 openModal.addEventListener('click', () => {
-    modal.style.display = 'inline-block';
+    modal.style.display = 'block';
 });
 
 //modal to be hidden when X is clicked
@@ -99,9 +107,14 @@ addBtn.addEventListener('click', () => {
     const card = document.createElement('div');
 
     card.setAttribute('data-index', `${library.length-1}`);
-    card.append(`Title: ${lastBook.title}; Author: ${lastBook.author}; Year: ${lastBook.year}; Read? ${lastBook.read}`);
+    card.append(`Title:\n${lastBook.title}\nAuthor:\n${lastBook.author}\nYear:\n${lastBook.year}`);
     makeBtn(card);
-    container.appendChild(card);
+    
+    if(lastBook.read === true){
+        pastRead.appendChild(card);
+    } else if (lastBook.read === false) {
+        tbr.appendChild(card);
+    }
 
     modal.style.display = 'none';
     form.reset();
