@@ -44,12 +44,10 @@ function Book(title, author, year, read) {
     this.read = read;
 }
 
-//add an object to the library array
 function addBook(title, author, year, read) {
   library.push(new Book(title, author, year, read));
 }
 
-//remove card + library entry on delete button click
 function removeBook (btn) {
     btn.addEventListener('click', () => {
       const dataIndex = Number(btn.parentElement.getAttribute('data-index'));
@@ -58,22 +56,51 @@ function removeBook (btn) {
     });
   }
 
-//make a delete button in the DOM
-function makeBtn(parent) {
-    const mkBtn = document.createElement('button');
-    mkBtn.setAttribute('class', 'del');
-    mkBtn.append('Remove');
-    parent.appendChild(mkBtn);
-    removeBook(mkBtn);
+function markRead (btn) {
+btn.addEventListener('click', () => {
+    const dataIndex = btn.parentElement.getAttribute('data-index');
+    if (library[dataIndex].read === false){
+        library[dataIndex].read = true;
+        btn.textContent = 'Read';
+        pastRead.appendChild(btn.parentElement);
+    } else if (library[dataIndex].read === true) {
+        library[dataIndex].read = false;
+        btn.textContent = 'To read';
+        tbr.appendChild(btn.parentElement);
+    }
+})
 }
 
-//display array items as cards
+function mkDeleteBtn(parent) {
+    const delBtn = document.createElement('button');
+    delBtn.setAttribute('class', 'del');
+    delBtn.append('Remove');
+    parent.appendChild(delBtn);
+    removeBook(delBtn);
+}
+
+function mkReadToggleBtn (parent, bool) {
+    const readBtn = document.createElement('button');
+    readBtn.setAttribute('class', 'mark-read');
+
+    if (bool === true) {
+        readBtn.append('Read');
+    } else if (bool === false) {
+        readBtn.append('To read');
+    }
+    
+    parent.appendChild(readBtn);
+    markRead(readBtn);
+}
+
+//display existing array items as cards
 function displayItems() {
     library.forEach(item => {
         const card = document.createElement('div');
         card.setAttribute('data-index', `${library.indexOf(item)}`);
-        card.append(`Title:\n${item.title}\nAuthor:\n${item.author}\nYear:\n${item.year}`);
-        makeBtn(card);
+        card.append(`Title: ${item.title}\nAuthor: ${item.author}\nYear: ${item.year}`);
+        mkReadToggleBtn(card, item.read);
+        mkDeleteBtn(card);
         
         if(item.read === true){
             pastRead.appendChild(card);
@@ -83,7 +110,6 @@ function displayItems() {
         
     })
 }
-//I don't think this will be needed in the final product?
 displayItems();
 
 
@@ -98,24 +124,26 @@ closeBtn.addEventListener('click', () => {
     form.reset();
 });
 
-//form data to be added to the array when "add" is clicked
-//new card to be created, display data from latest array item
-addBtn.addEventListener('click', () => {
-    addBook(bkTitle.value, bkAuthor.value, bkYear.value, bkRead.checked);
-
+function newCard() {
     const lastBook = library[library.length-1];
     const card = document.createElement('div');
 
     card.setAttribute('data-index', `${library.length-1}`);
-    card.append(`Title:\n${lastBook.title}\nAuthor:\n${lastBook.author}\nYear:\n${lastBook.year}`);
-    makeBtn(card);
+    card.append(`Title: ${lastBook.title}\nAuthor: ${lastBook.author}\nYear: ${lastBook.year}`);
+    mkReadToggleBtn(card, lastBook.read);
+    mkDeleteBtn(card);
     
     if(lastBook.read === true){
         pastRead.appendChild(card);
     } else if (lastBook.read === false) {
         tbr.appendChild(card);
     }
+}
 
+//new card and book obj when "add" is clicked
+addBtn.addEventListener('click', () => {
+    addBook(bkTitle.value, bkAuthor.value, bkYear.value, bkRead.checked);
+    newCard();
     modal.style.display = 'none';
     form.reset();
 });
