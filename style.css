@@ -47,6 +47,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     margin: 2em;
+    column-gap: 2em;
 }
 
 .container > .tbr, .container > .read {
