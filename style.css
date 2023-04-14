@@ -23,16 +23,16 @@
 }
 
 .open {
-    background-color: white;
+    background-color: #bee8ba;
     margin: 1.5em;
-    border: 1px solid #888;
+    border: none;
     border-radius: 10px;
     padding: 0.5em;
     width: 60%;
 }
 
 .open:hover {
-    background-color: #bee8ba;
+    background-color: lightgreen;
     transition: all 0.2s ease-out;
     cursor:pointer;
     box-shadow: 4px 4px 12px -5px #888;
@@ -74,15 +74,17 @@
 
 .del {
     background-color: #f5a6a8;
-    border: 1px solid #888;
+    border: none;
     border-radius: 10px;
     font-weight: bolder;
 }
 
 .del:hover{
-    cursor: pointer;
     background-color: #fa7a7f;
     transition: all 0.3s ease;
+    transition: all 0.2s ease-out;
+    cursor:pointer;
+    box-shadow: 4px 4px 12px -5px #888;
 }
 
 .modal {
@@ -138,11 +140,17 @@ form > label, form > input, .modal-body > .close {
 }
 
 .modal-body > form > .add {
-    border: 1px solid #888;
+    border: none;
     padding: 0.5em;
     border-radius: 10px;
     background-color: lightgreen;
     margin: 5px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
+.modal-body > form > .add:hover {
+    transition: all 0.2s ease-out;
+    cursor:pointer;
+    box-shadow: 4px 4px 12px -5px #888;
+}
