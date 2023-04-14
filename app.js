@@ -14,28 +14,7 @@ let bkYear = document.querySelector('#year');
 let bkRead = document.querySelector('#read');
 
 
-let library = [
-    {
-        title: 'The Lord of the Rings',
-        author: 'J.R.R. Tolkien',
-        year: 1954,
-        read: true,
-    },
-
-    {     
-        title: 'The Giver',
-        author: 'Lois Lowry',
-        year: 1993,
-        read: true,
-    },
-
-    {
-        title: 'Dune',
-        author: 'Frank Herbert',
-        year: 1965,
-        read: false,
-    },
-];
+let library = [];
 
 function Book(title, author, year, read) {
     this.title = title;
