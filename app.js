@@ -16,11 +16,13 @@ let bkRead = document.querySelector('#read');
 
 let library = [];
 
-function Book(title, author, year, read) {
-    this.title = title;
-    this.author = author;
-    this.year = year;
-    this.read = read;
+class Book {
+    constructor(title, author, year, read) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.read = read;
+    }
 }
 
 function addBook(title, author, year, read) {
