@@ -12,6 +12,7 @@ let bkTitle = document.querySelector('#title');
 let bkAuthor = document.querySelector('#author');
 let bkYear = document.querySelector('#year');
 let bkRead = document.querySelector('#read');
+let formError = document.querySelector('.error-message');
 
 
 let library = [];
@@ -124,9 +125,45 @@ function newCard() {
 
 //new card and book obj when "add" is clicked
 addBtn.addEventListener('click', () => {
-    addBook(bkTitle.value, bkAuthor.value, bkYear.value, bkRead.checked);
-    newCard();
-    modal.style.display = 'none';
-    form.reset();
+    if (checkValidity()) {
+        addBook(bkTitle.value, bkAuthor.value, bkYear.value, bkRead.checked);
+        newCard();
+        modal.style.display = 'none';
+        form.reset();
+    } else if (!checkValidity()) {
+        showErrorMessage();
+    }
 });
 
+const inputs = document.querySelectorAll('input');
+inputs.forEach(field => {
+    field.addEventListener('input', checkValidity);
+})
+
+function checkValidity () {
+    formError.textContent = '';
+    formError.classList.remove('active');
+    if (
+        bkTitle.validity.valid &&
+        bkAuthor.validity.valid &&
+        bkYear.validity.valid
+        ) {
+            return true;
+    } else {
+        return false;
+    }
+}
+
+function showErrorMessage () {
+    if (bkTitle.validity.valueMissing) {
+        formError.textContent = 'You must add a title.';
+    } else if (bkAuthor.validity.valueMissing) {
+        formError.textContent = 'You must specify an author.';
+    } else if (bkYear.validity.valueMissing) {
+        formError.textContent = 'You must add a year.';
+    } else if (bkYear.validity.rangeOverflow) {
+        formError.textContent = 'Slow down! Are you reading books from the future?';
+    }
+
+    formError.classList.add('active');
+}

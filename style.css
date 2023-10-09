@@ -190,4 +190,7 @@ footer > h6 > a {
     font-size: larger;
 }
 
-
+.active {
+    background-color: red;
+    color: white;
+}
